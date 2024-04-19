@@ -6,10 +6,20 @@ library(shiny)
 # Source the R code file
 source("functions.R", local = TRUE)
 
-nhanes_comb_feat <- read.csv('nhanes_comb_feat.csv')
+# nhanes_comb_feat <- read.csv('nhanes_comb_feat.csv')
 
-cox_model <- nhanesdesignmodel <- readRDS("nhanesdesignmodel.rds") # load cox regression model
-nhane_xgb <- read.csv("nhane_xgb.csv") # this data is used to train cox reg model (nhanesdesignmodel), but it's still needed for survfit function
+nhanes_comb_feat_url <- "https://raw.githubusercontent.com/smallfishsq/vz_shiny/main/nhanes_comb_feat.csv"
+nhanes_comb_feat <- read.csv(nhanes_comb_feat_url)
+
+
+github_url <- "nhanesdesignmodel.rds"
+
+cox_model <- nhanesdesignmodel <- readRDS(github_url) # load cox regression model
+
+
+
+nhane_xgb_url <- "https://raw.githubusercontent.com/smallfishsq/vz_shiny/main/nhane_xgb.csv"
+nhane_xgb <- read.csv(nhane_xgb_url) # this data is used to train cox reg model (nhanesdesignmodel), but it's still needed for survfit function
 
 # Define UI
 ui <- fluidPage(
